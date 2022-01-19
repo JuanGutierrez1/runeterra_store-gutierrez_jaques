@@ -8,7 +8,7 @@ function App() {
     <>
     <NavBar 
       list={[{title: 'Inicio'}, {title: 'Categorias'}, {title: 'Vender'}, {title: 'Ofertas'}]}
-      brand="Tienda Lolsito"
+      brand="Runeterra Store"
     />
     <div className="App">
       <label>Holi</label>
