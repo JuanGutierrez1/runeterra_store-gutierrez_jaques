@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap"
+import CartWidget from "./CartWidget"
 
 const NavBar = ({brand, list = []}) => {
   return (
@@ -10,6 +11,7 @@ const NavBar = ({brand, list = []}) => {
           <Nav.Link href={`#${el.title}`} key={el.title}>{el.title}</Nav.Link>
         )}
       </Nav>
+      <CartWidget/>
       </Container>
     </Navbar>
   )
