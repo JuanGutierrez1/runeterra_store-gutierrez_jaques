@@ -1,18 +1,25 @@
-import { Card } from "react-bootstrap"
+import { Card, CardActionArea, CardMedia, CardContent, Typography} from "@mui/material"
 
 const ItemListContainer = ({items}) =>{
-  debugger
   return (
-    <Card style={{width: '10rem'}}>
-      <Card.Img variant="top" src={items.src}/>
-      <Card.Body>
-        <Card.Title>
-          {items.title}
-        </Card.Title>
-        <Card.Text>
-          {items.text}
-        </Card.Text>
-      </Card.Body>
+    <Card sx={{ maxWidth: 200 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          width="100px"
+          height="100px"
+          image={items.src}
+          alt="producto"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {items.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {items.text}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
     </Card>
   )
 }
