@@ -1,8 +1,9 @@
 import { Card, CardActionArea, CardMedia, CardContent, Typography} from "@mui/material"
+import ItemCount from './ItemCount'
 
 const ItemListContainer = ({items}) =>{
   return (
-    <Card sx={{ maxWidth: 200 }}>
+    <Card sx={{ maxWidth: 200 , m: 5 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -19,7 +20,9 @@ const ItemListContainer = ({items}) =>{
             {items.text}
           </Typography>
         </CardContent>
+
       </CardActionArea>
+      <ItemCount initial={1} stock={5}/>
     </Card>
   )
 }
