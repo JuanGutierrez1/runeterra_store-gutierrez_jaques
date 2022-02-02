@@ -6,7 +6,9 @@ const ItemListContainer = () =>{
   const [items, setItems] = useState([]);
 
   useEffect(() =>{
-    getData()
+    getData().then(res => {
+      setItems(res)
+    })
   }, [])
 
   let getData = () => new Promise((resolve, reject) => {
@@ -34,8 +36,7 @@ const ItemListContainer = () =>{
           pictureUrl:'https://wiki.runarcana.org/images/thumb/b/be/Doran%27s_Shield_item_Unused_HD.png/150px-Doran%27s_Shield_item_Unused_HD.png'
         },
       ]
-      setItems(items)
-      resolve()
+      resolve(items)
     }, 2000);
   });
   
