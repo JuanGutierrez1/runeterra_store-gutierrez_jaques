@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer';
+import ItemDetailConatiner from './components/ItemDetailContainer';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       brand="Runeterra Store"
     />
     <ItemListContainer/>
+    <ItemDetailConatiner/>
     </>
   );
 }

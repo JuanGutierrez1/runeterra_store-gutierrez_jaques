@@ -3,8 +3,8 @@ import ItemCount from './ItemCount'
 
 const ItemListContainer = ({item}) =>{
   return (
-    <Card sx={{ maxWidth: 200 , m: 5 }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 200 , m: 5, display:'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      <CardActionArea sx={{flexGrow: 1, display:'flex', flexDirection: 'column'}}>
         <CardMedia
           component="img"
           width="100px"
@@ -12,7 +12,7 @@ const ItemListContainer = ({item}) =>{
           image={item.pictureUrl}
           alt="producto"
         />
-        <CardContent>
+        <CardContent sx={{flexGrow: 1}}>
           <Typography gutterBottom variant="h5" component="div">
             {item.title}
           </Typography>
