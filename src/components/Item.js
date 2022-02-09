@@ -1,10 +1,12 @@
 import { Card, CardActionArea, CardMedia, CardContent, Typography} from "@mui/material"
+import { useNavigate } from "react-router-dom";
 import ItemCount from './ItemCount'
 
 const ItemListContainer = ({item}) =>{
+  let navigate = useNavigate()
   return (
     <Card sx={{ maxWidth: 200 , m: 5, display:'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-      <CardActionArea sx={{flexGrow: 1, display:'flex', flexDirection: 'column'}}>
+      <CardActionArea onClick={() => navigate(`/item/${item.id}`)} sx={{flexGrow: 1, display:'flex', flexDirection: 'column'}}>
         <CardMedia
           component="img"
           width="100px"

@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
 import ItemList from './ItemList'
+import { useParams } from "react-router-dom";
+import { CircularProgress, Box } from "@mui/material";
 
 const ItemListContainer = () =>{
   
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  let { id } = useParams();
 
   useEffect(() =>{
+    setIsLoading(true)
     getData().then(res => {
+      setIsLoading(false)
       setItems(res)
     })
-  }, [])
+  }, [id])
 
   let getData = () => new Promise((resolve, reject) => {
     setTimeout(function(){
       let items = [
         {
           id: 1,
+          idcategory: 2,
           title:"Anillo de Doran", 
           price: 400,
           description: "ÚNICA – BELICISTA: +2.5% de omnivampirismo",
@@ -23,6 +30,7 @@ const ItemListContainer = () =>{
         },
         {
           id: 2,
+          idcategory: 1,
           title:"Espada de Doran", 
           price: 450,
           description: "ÚNICA – ENFOQUE: Los ataques básicos infligen 5 de daño físico adicional al impacto contra súbditos.",
@@ -30,20 +38,23 @@ const ItemListContainer = () =>{
         },
         {
           id: 3,
+          idcategory: 3,
           title:"Escudo de Doran", 
           price: 450,
           description: "ÚNICA – RESTAURACIÓN: Restaura 6 de vida cada 5 segundos.",
           pictureUrl:'https://wiki.runarcana.org/images/thumb/b/be/Doran%27s_Shield_item_Unused_HD.png/150px-Doran%27s_Shield_item_Unused_HD.png'
         },
       ]
-      resolve(items)
-    }, 2000);
+      resolve(items.filter(it => !id || it.idcategory == parseInt(id)))
+    }, 300);
   });
   
 
 
   return (
-    <ItemList items={items}/>
+    <Box display="flex" justifyContent='center'>
+      {isLoading ? (<CircularProgress sx={{m: 4}}/>) : (<ItemList items={items}/>)}
+    </Box>
   )
 }
 

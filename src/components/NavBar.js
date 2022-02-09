@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Box, AppBar, Toolbar, Typography, Menu, MenuItem, Container, IconButton, Button } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from "react-router-dom";
 import CartWidget from './CartWidget'
 
 const NavBar = ({brand, list = []}) => {
+  let navigate = useNavigate()
   //Variables NavBar
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -16,6 +18,11 @@ const NavBar = ({brand, list = []}) => {
     setAnchorElNav(null);
   };
 
+  const handleClickCategory = (id) => {
+    handleCloseNavMenu()
+    navigate(`/category/${id}`)
+  }
+
   return (
     
 <AppBar position="static">
@@ -25,7 +32,8 @@ const NavBar = ({brand, list = []}) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{cursor: 'pointer', mr: 2, display: { xs: 'none', md: 'flex' } }}
+            onClick={() => navigate('/')}
           >
             {brand}
           </Typography>
@@ -59,7 +67,7 @@ const NavBar = ({brand, list = []}) => {
               }}
             >
               {list.map((menu) => (
-                <MenuItem key={menu.title} onClick={handleCloseNavMenu}>
+                <MenuItem key={menu.title} onClick={() => handleClickCategory(menu.id)}>
                   <Typography textAlign="center">{menu.title}</Typography>
                 </MenuItem>
               ))}
@@ -69,18 +77,19 @@ const NavBar = ({brand, list = []}) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{ cursor: 'pointer', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            onClick={() => navigate('/')}
           >
             {brand}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {list.map((el) => (
+            {list.map((menu) => (
               <Button
-                key={el.title}
-                onClick={handleCloseNavMenu}
+                key={menu.title}
+                onClick={() => handleClickCategory(menu.id)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {el.title}
+                {menu.title}
               </Button>
             ))}
           </Box>
