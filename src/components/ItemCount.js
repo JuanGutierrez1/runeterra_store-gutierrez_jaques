@@ -8,6 +8,7 @@ const ItemCount = ({initial, stock, onAdd}) => {
   
   const handleButton = (val) => {
     setCant(cant + val)
+    onAdd(cant + val)
   }
   return (
     <Box justifyContent= {'center'} display= {'flex'} alignItems={'center'} gap={2} >

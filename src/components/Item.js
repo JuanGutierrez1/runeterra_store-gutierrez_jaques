@@ -1,6 +1,5 @@
 import { Card, CardActionArea, CardMedia, CardContent, Typography} from "@mui/material"
 import { useNavigate } from "react-router-dom";
-import ItemCount from './ItemCount'
 
 const ItemListContainer = ({item}) =>{
   let navigate = useNavigate()
@@ -24,7 +23,6 @@ const ItemListContainer = ({item}) =>{
         </CardContent>
 
       </CardActionArea>
-      <ItemCount initial={1} stock={5}/>
     </Card>
   )
 }
