@@ -1,6 +1,5 @@
-import { Box, Grid, Typography, Button } from "@mui/material"
+import { Box, Grid, Typography } from "@mui/material"
 import ItemCount from './ItemCount'
-import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 const ItemDetail = ({item}) => {
@@ -30,7 +29,6 @@ const ItemDetail = ({item}) => {
             ${item.price}
             </Typography>
             <ItemCount onAdd={onAdd} initial={1} stock={5}/>
-            <Button variant="contained" onClick={useNavigate('/cart')} sx={{m:1}}>Comprar</Button>
           </Grid>
         </Grid>
       </Grid>
