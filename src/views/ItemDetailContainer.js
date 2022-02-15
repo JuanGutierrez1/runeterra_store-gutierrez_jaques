@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import ItemDetail from "./ItemDetail"
+import ItemDetail from "../components/ItemDetail"
 import { useParams } from "react-router-dom";
 import { CircularProgress, Box } from "@mui/material";
 
+
 const ItemDetailConatiner = () => {
+  
+
 
   const [item, setItem] = useState({})
   const [isLoading, setIsLoading] = useState(false);

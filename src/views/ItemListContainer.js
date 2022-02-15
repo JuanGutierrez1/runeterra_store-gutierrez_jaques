@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import ItemList from './ItemList'
+import ItemList from '../components/ItemList'
 import { useParams } from "react-router-dom";
 import { CircularProgress, Box } from "@mui/material";
+import { useCart } from "../contexts/CartContext";
 
 const ItemListContainer = () =>{
-  
+  const cart = useCart();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let { id } = useParams();
@@ -48,8 +49,6 @@ const ItemListContainer = () =>{
       resolve(items.filter(it => !id || it.idcategory == parseInt(id)))
     }, 300);
   });
-  
-
 
   return (
     <Box display="flex" justifyContent='center'>

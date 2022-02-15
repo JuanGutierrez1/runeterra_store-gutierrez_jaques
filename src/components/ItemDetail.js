@@ -1,12 +1,15 @@
 import { Box, Grid, Typography } from "@mui/material"
 import ItemCount from './ItemCount'
 import { useState } from "react"
+import { useCart } from "../contexts/CartContext";
 
 const ItemDetail = ({item}) => {
-  const [cant, setCant] = useState(0)
-
-  const onAdd = (value) =>{
-    setCant(value)
+  // const [cant, setCant] = useState(0)
+  const cart = useCart();
+  const onAdd = (quantity) =>{
+    // debugger
+    cart.addItem({...item, quantity:quantity})
+    // setCant(value)
   }
 
   return(
