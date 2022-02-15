@@ -13,13 +13,11 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(INITIAL_STATE);
 
   const addItem = (item, quantity) => {
-    debugger
     if (isInCart(item.id)) {
       // ya existe el item, no lo agrego
       return;
     }
-    const newItems = [...cart.addedItems]
-    newItems.push(item)
+    const newItems = [...cart.addedItems, item]
     setCart({ ...cart, addedItems: newItems} );
   };
 
