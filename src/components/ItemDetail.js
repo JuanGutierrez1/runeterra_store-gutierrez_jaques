@@ -1,22 +1,20 @@
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography, Button } from "@mui/material"
 import ItemCount from './ItemCount'
-import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useCart } from "../contexts/CartContext";
 
 const ItemDetail = ({item}) => {
-  // const [cant, setCant] = useState(0)
   const cart = useCart();
+  const navigate = useNavigate()
   const onAdd = (quantity) =>{
-    // debugger
     cart.addItem({...item, quantity:quantity})
-    // setCant(value)
   }
 
   return(
     <Box sx={{width: '50%', boxShadow: 3, m: 5}}>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <img src={item.pictureUrl} width={200}/> 
+          <img src={item.pictureUrl} alt={item.title} width={200}/> 
         </Grid>
         <Grid container item xs={8}>
           <Grid item xs={12}>
@@ -33,6 +31,9 @@ const ItemDetail = ({item}) => {
             </Typography>
             <ItemCount onAdd={onAdd} initial={1} stock={5}/>
           </Grid>
+        </Grid>
+        <Grid xs={12} sx={{display:'flex', justifyContent:'flex-end'}}>
+          <Button variant="contained" onClick={() => navigate('/cart')} sx={{m:1}}>Terminar compra</Button>
         </Grid>
       </Grid>
     </Box>
