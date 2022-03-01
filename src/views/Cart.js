@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, Link  } from "@mui/material";
+import { Box, Typography, IconButton, Button } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useCart } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,10 @@ const Cart = () =>{
   const cartContext = useCart();
   const deleteItem = (idItem) =>{
     cartContext.removeItem(idItem)
+  }
+
+  const continuarCompra = () =>{
+    navigate('/checkout')
   }
   return(
     <Box display={'flex'} flexDirection={'column'} m={4} gap={5} p={2} boxShadow={3}>
@@ -38,6 +42,14 @@ const Cart = () =>{
       : <Typography sx={{display:'flex', justifyContent:'center'}} variant="h4">
         No se han añadido items al carrito. <a  onClick={() => navigate("/")} href="#">Volver a Inicio</a>
       </Typography>}
+      {cartContext.cart.addedItems.length > 0 ? (
+        <>
+          <Typography variant="h5" sx={{display:'flex', justifyContent:'center'}}>Total: ${cartContext.cart.totalPrice}</Typography> 
+          <Box display="flex" justifyContent="center">
+            <Button variant="contained" onClick={continuarCompra}>Continuar con el pago</Button>
+          </Box>
+        </>
+      ): null}
     </Box>
   )
 }
