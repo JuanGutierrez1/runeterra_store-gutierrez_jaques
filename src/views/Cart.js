@@ -40,7 +40,7 @@ const Cart = () =>{
         </Box>
       )
       : <Typography sx={{display:'flex', justifyContent:'center'}} variant="h4">
-        No se han añadido items al carrito. <a  onClick={() => navigate("/")} href="#">Volver a Inicio</a>
+        No se han añadido items al carrito. <a  onClick={() => navigate("/")} href="#">Volver al Inicio</a>
       </Typography>}
       {cartContext.cart.addedItems.length > 0 ? (
         <>

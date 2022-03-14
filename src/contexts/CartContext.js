@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react";
+import ItemList from "../components/ItemList";
 
 export const CartContext = createContext();
 
@@ -14,7 +15,12 @@ export const CartProvider = ({ children }) => {
 
   const addItem = (item, quantity) => {
     if (isInCart(item.id)) {
-      // ya existe el item, no lo agrego
+      // ya existe el item, entonces agrego la nueva cantidad y actualizo el precio total
+      const itemActual = cart.addedItems.find(itemActual => itemActual.id === item.id)
+      let newItems =cart.addedItems.filter(itemActual => itemActual.id !== item.id)
+      newItems.push({...item, quantity: item.quantity + itemActual.quantity})
+      const newTotalPrice = cart.totalPrice + item.price * item.quantity
+      setCart({ ...cart, addedItems: newItems, totalPrice: newTotalPrice} );
       return;
     }
     const newItems = [...cart.addedItems, item]

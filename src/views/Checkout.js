@@ -16,6 +16,17 @@ const Checkout = () =>{
   const cartContext = useCart();
   const [buyer, setBuyer] = useState(initialState)
   const [orden, setOrden] = useState('')
+  const [emailConfirmado, setEmailConfirmado] = useState('')
+
+  const formularioCompleto = () =>{
+    return (
+      buyer.name !== '' &&
+      buyer.phone !== '' &&
+      buyer.email !== '' &&
+      emailConfirmado !== '' && 
+      emailConfirmado === buyer.email
+    )
+  }
 
   const handleOnChange = (e) => {
 		const { value, name } = e.target;
@@ -38,7 +49,9 @@ const Checkout = () =>{
         <TextField value={buyer.name} label="Nombre" name='name' onChange={handleOnChange} type="text"/>
         <TextField value={buyer.phone} label="Telefono" name='phone' onChange={handleOnChange} type="number"/>
         <TextField value={buyer.email} label="Email" name='email' onChange={handleOnChange} type="text"/>
-        <Button variant="contained" onClick={finalizarCompra}>Finalizar compra</Button></>)
+        <TextField value={emailConfirmado} label="Confirmar email" name='confirm-email' onChange={(e) => setEmailConfirmado(e.target.value)} type="email"/>
+        {emailConfirmado !== '' && emailConfirmado !== buyer.email ? (<Typography variant="h6" color={'red'}>No coinciden los email</Typography>) : null}
+        <Button variant="contained" disabled={!formularioCompleto()} onClick={finalizarCompra}>Finalizar compra</Button></>)
         : <>
         <Typography variant="h4">Gracias por su compra.</Typography>
         <Typography variant="h4">Nro de orden: {orden}</Typography>
